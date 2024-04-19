@@ -9,7 +9,7 @@
 // @run-at       document-end
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=faceit.com
 // @homepageURL  https://github.com/Maksim-Nikolaev/faceit-block-ad
-// ==/UserScript==
+// ==/UserScript== 
 
 (function() {
     'use strict';
