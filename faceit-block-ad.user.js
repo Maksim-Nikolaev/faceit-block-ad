@@ -39,16 +39,16 @@
     // Function to find and remove the element with a specific background image URL
     function removeAdFromPopup() {
         // Find the FuseModalPortal element
-        const fuseModalPortalElement = document.querySelector('.FuseModalPortal');
+        const fuseModalPortalElement = document.querySelectorAll('.FuseModalPortal');
 
-        if (fuseModalPortalElement) {
-            // Get all the child elements of the FuseModalPortal
-            const childElements = fuseModalPortalElement.querySelectorAll('*');
-
-            // Loop through the child elements and remove the background image
-            childElements.forEach(element => {
+        // Loop through the child elements and check their background image
+        for (const element of fuseModalPortalElement) {
+            const backgroundImage = window.getComputedStyle(element).getPropertyValue('background-image');
+            if (backgroundImage.includes(backgroundImageUrl)) {
+                // Remove the background image
                 element.style.backgroundImage = 'none';
-            });
+                return element;
+            }
         }
     }
 
