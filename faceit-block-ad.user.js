@@ -9,55 +9,50 @@
 // @run-at       document-end
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=faceit.com
 // @homepageURL  https://github.com/Maksim-Nikolaev/faceit-block-ad
-// ==/UserScript== 
+// ==/UserScript==
 
 (function() {
     'use strict';
 
-    // Define the CSS selector for the element with the background image
-    const backgroundSelector = '.bHBSNk';
+    // Define the URL of the background image to be blocked
+    const backgroundImageUrl = 'https://assets.faceit-cdn.net/organizer_takeover/db18537b-4172-4813-b089-36490c1553b7_1713372477971.jpg';
 
-    // Define the CSS selector for the popup element
-    const popupSelector = '.lcQvgf';
+    // Function to find and remove the element with a specific background image URL
+    function removeAdFromMatchPage() {
+        // Get all the child elements of the main container
+        const childElements = document.querySelectorAll('#MATCHROOM-OVERVIEW *');
 
-    // Function to check for the presence of the popup
-    function checkBackground() {
-        const backgroundElement = document.querySelector(backgroundSelector);
-        if (backgroundElement) {
-            removeBackgroundImage();
+        // Loop through the child elements and check their background image
+        for (const element of childElements) {
+            const backgroundImage = window.getComputedStyle(element).getPropertyValue('background-image');
+            if (backgroundImage.includes(backgroundImageUrl)) {
+                // Remove the background image
+                element.style.backgroundImage = 'none';
+                return element;
+            }
         }
+
+        // If no element is found, return null
+        return null;
     }
 
-    // Function to remove the background image
-    function removeBackgroundImage() {
-        const backgroundElement = document.querySelector(backgroundSelector);
-        if (backgroundElement) {
-            backgroundElement.style.background = 'none';
+    // Function to find and remove the element with a specific background image URL
+    function removeAdFromPopup() {
+        // Find the FuseModalPortal element
+        const fuseModalPortalElement = document.querySelector('.FuseModalPortal');
+
+        if (fuseModalPortalElement) {
+            // Get all the child elements of the FuseModalPortal
+            const childElements = fuseModalPortalElement.querySelectorAll('*');
+
+            // Loop through the child elements and remove the background image
+            childElements.forEach(element => {
+                element.style.backgroundImage = 'none';
+            });
         }
     }
-
-    // Function to remove the popup background
-    function removePopupBackground() {
-        const popupElement = document.querySelector(popupSelector);
-        if (popupElement) {
-            popupElement.style.backgroundImage = 'none';
-        }
-    }
-
-    // Function to check for the presence of the popup
-    function checkPopup() {
-        const popupElement = document.querySelector(popupSelector);
-        if (popupElement) {
-            removePopupBackground();
-        }
-    }
-
-    // Run the script when the page loads
-    window.addEventListener('load', () => {
-        setTimeout(removeBackgroundImage, 3500); // Wait 3500ms before removing the background
-        checkPopup();
-    });
 
     // Check for the popup every 3500ms
-    setInterval(checkPopup, 3500);
+    setInterval(removeAdFromMatchPage, 3500);
+    setInterval(removeAdFromPopup, 3500);
 })();
