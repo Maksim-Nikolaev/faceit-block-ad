@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Block Background Image
+// @name         Faceit Disable White Market Ads
 // @namespace    https://www.faceit.com/
 // @version      0.1
 // @description  Blocks a specific background image on a website
