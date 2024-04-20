@@ -20,6 +20,14 @@
     // Define the CSS selector for the popup element
     const popupSelector = '.lcQvgf';
 
+    // Function to check for the presence of the popup
+    function checkBackground() {
+        const backgroundElement = document.querySelector(backgroundSelector);
+        if (backgroundElement) {
+            removeBackgroundImage();
+        }
+    }
+
     // Function to remove the background image
     function removeBackgroundImage() {
         const backgroundElement = document.querySelector(backgroundSelector);
