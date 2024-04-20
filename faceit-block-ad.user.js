@@ -36,6 +36,14 @@
         }
     }
 
+    // Function to check for the presence of the popup
+    function checkPopup() {
+        const popupElement = document.querySelector(popupSelector);
+        if (popupElement) {
+            removePopupBackground();
+        }
+    }
+
     // Run the script when the page loads
     window.addEventListener('load', () => {
         setTimeout(removeBackgroundImage, 3500); // Wait 3500ms before removing the background
