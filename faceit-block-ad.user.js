@@ -28,6 +28,7 @@
             if (backgroundImage.includes(backgroundImageUrl)) {
                 // Remove the background image
                 element.style.backgroundImage = 'none';
+                console.log("Remove background ad from match page!");
                 return element;
             }
         }
@@ -47,6 +48,7 @@
             if (backgroundImage.includes(backgroundImageUrl)) {
                 // Remove the background image
                 element.style.backgroundImage = 'none';
+                console.log("Remove background ad from accept match pop up!");
                 return element;
             }
         }
